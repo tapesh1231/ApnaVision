@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="row">
+    <div class="col-md-3">
+        <div class="list-group">
+            <a href="{{ url_for('dashboard.index') }}" class="list-group-item list-group-item-action">Dashboard</a>
+            <a href="{{ url_for('dashboard.add_device') }}" class="list-group-item list-group-item-action">Add Device</a>
+            <a href="{{ url_for('dashboard.about') }}" class="list-group-item list-group-item-action">About</a>
+            <a href="{{ url_for('dashboard.contact') }}" class="list-group-item list-group-item-action">Contact</a>
+        </div>
+    </div>
+    <div class="col-md-9">
+        <h2>Your Devices</h2>
+        <div class="row">
+            {% for device in devices %}
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ device.name }}</h5>
+                        <p class="card-text">Type: {{ device.device_type }}</p>
+                        <p class="card-text">Status: 
+                            <span class="badge badge-{{ 'success' if device.status else 'danger' }}">
+                                {{ 'On' if device.status else 'Off' }}
+                            </span>
+                        </p>
+                        <a href="{{ url_for('dashboard.control_device', device_id=device.id) }}" 
+                           class="btn btn-{{ 'danger' if device.status else 'success' }}">
+                            Turn {{ 'Off' if device.status else 'On' }}
+                        </a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,29 @@
+{% extends "dashboard/base.html" %}
+{% block content %}
+<div class="container">
+    <h2>{{ device.name }} Details</h2>
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">{{ device.name }}</h5>
+            <p class="card-text"><strong>Type:</strong> {{ device.device_type }}</p>
+            <p class="card-text"><strong>Status:</strong> 
+                <span class="badge badge-{{ 'success' if device.status else 'danger' }}">
+                    {{ 'On' if device.status else 'Off' }}
+                </span>
+            </p>
+            <p class="card-text"><strong>IP Address:</strong> {{ device.ip_address }}</p>
+            <p class="card-text"><strong>Location:</strong> {{ device.location }}</p>
+            <p class="card-text"><strong>Added:</strong> {{ device.added_date.strftime('%Y-%m-%d') }}</p>
+            
+            <div class="btn-group">
+                <a href="{{ url_for('dashboard.control_device', device_id=device.id) }}" 
+                   class="btn btn-{{ 'danger' if device.status else 'success' }}">
+                    Turn {{ 'Off' if device.status else 'On' }}
+                </a>
+                <a href="{{ url_for('dashboard.edit_device', device_id=device.id) }}" class="btn btn-info">Edit</a>
+                <a href="{{ url_for('dashboard.delete_device', device_id=device.id) }}" class="btn btn-danger">Delete</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

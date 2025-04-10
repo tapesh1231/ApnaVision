@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block content %}
+    <div class="jumbotron">
+        <h1 class="display-4">Welcome to Our IoT Platform</h1>
+        <p class="lead">Control and monitor your smart devices from anywhere</p>
+        <hr class="my-4">
+        <p>Our company provides cutting-edge IoT solutions for homes and businesses.</p>
+        <a class="btn btn-primary btn-lg" href="{{ url_for('auth.register') }}" role="button">Get Started</a>
+    </div>
+
+    <div class="row">
+        <div class="col-md-4">
+            <h3>About Our Company</h3>
+            <p>Founded in 2010, we've been at the forefront of IoT technology...</p>
+            <a href="{{ url_for('main.about_company') }}" class="btn btn-secondary">Learn More</a>
+        </div>
+        <div class="col-md-4">
+            <h3>Our Products</h3>
+            <p>Discover our range of smart devices and solutions...</p>
+            <a href="{{ url_for('main.products') }}" class="btn btn-secondary">View Products</a>
+        </div>
+        <div class="col-md-4">
+            <h3>Get Started</h3>
+            <p>Create an account and start controlling your devices today!</p>
+            <a href="{{ url_for('auth.register') }}" class="btn btn-success">Sign Up Now</a>
+        </div>
+    </div>
+{% endblock %}
